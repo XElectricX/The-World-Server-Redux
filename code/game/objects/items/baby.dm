@@ -4,6 +4,7 @@
 	desc = "A very, very young child. How cute."
 	icon = 'icons/obj/baby.dmi'
 	icon_state = "baby-blackeyed"
+	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/weapon/baby/attack_self(mob/living/user as mob)
 	if (user.client)
