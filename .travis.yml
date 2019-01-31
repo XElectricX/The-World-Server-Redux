@@ -37,7 +37,7 @@ after_success:
 after_failure:
   - chmod +x ./send-to-discord.sh
   - ./send-to-discord.sh failure $WEBHOOK_URL
-
+#
 script:
   - (! grep 'step_[xy]' maps/**/*.dmm)
 #  - (! grep -E "(/obj/machinery/door/firedoor).*\1" maps/*.dmm)
