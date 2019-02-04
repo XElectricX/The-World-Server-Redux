@@ -134,6 +134,91 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 2)
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
+/obj/item/weapon/material/twohanded/gravityhammer
+	name = "gravity hammer"
+	desc = "An incredibly experimental device capable of weaponizing one of the most powerful forces in our universe. <br>This weapon causes devastating damage to those it hits due to a power field sustained by a mini-singularity inside of the hammer."
+	icon_state = "fireaxe0"
+	base_icon = "fireaxe"
+	flags = CONDUCT
+	slot_flags = SLOT_BACK
+	//no_embed = 1
+	unwielded_force_divisor = 0.2 //10 damage while one handed, hammer is not activated
+	force_divisor = 1
+	force_wielded = 50
+	throwforce = 15
+	throw_range = 1
+	w_class = 5
+	//var/charged = 5
+	origin_tech = "combat=5;bluespace=6"
+	attack_verb = list("smashed")
+	applies_material_colour = 0
+	can_dull = 0
+
+/obj/item/weapon/material/twohanded/gravityhammer/update_held_icon()
+	var/mob/living/M = loc
+	if(istype(M) && !issmall(M) && M.item_is_in_hands(src) && !M.hands_are_full())
+		wielded = 1
+		force = force_wielded
+		name = "[base_name] (wielded)"
+		M.visible_message("The hammer whirs upon activation.")
+		update_icon()
+	else
+		wielded = 0S
+		force = force_unwielded
+		name = "[base_name]"
+		M.visible_message("The hammer hums into silence.")
+	update_icon()
+	..()
+
+/*/obj/item/weapon/material/twohanded/gravityhammer/New()
+	..()
+	processing_objects.Add(src)
+
+/obj/item/weapon/material/twohanded/gravityhammer/Destroy()
+	processing_objects.Remove(src)
+	return ..()*/
+/*
+/obj/item/weapon/material/material/twohanded/gravityhammer/process()
+	if(charged < 5)
+		charged++
+	return
+*/
+/*
+/obj/item/weapon/material/twohanded/gravityhammer/update_icon()  //Currently only here to fuck with the on-mob icons.
+	icon_state = "knighthammer[wielded]"
+	return
+*/
+/obj/item/weapon/material/twohanded/gravityhammer/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+	if(!proximity) return
+//	if(charged == 5)
+//		charged = 0
+	if(istype(A, /mob/living/))
+		var/mob/living/Z = A
+		if(Z/*.health >= 1*/)
+			Z.visible_message("<span class='danger'>[Z.name] was sent flying by a blow from the [src.name]!</span>", \
+				"<span class='userdanger'>You feel a powerful blow connect with your body and send you flying!</span>", \
+				"<span class='danger'>You hear something heavy impact flesh!.</span>")
+			var/atom/throw_target = get_edge_target_turf(Z, get_dir(src, get_step_away(Z, src)))
+			Z.throw_at(throw_target, 200, 4)
+			playsound(user, 'sound/weapons/marauder.ogg', 50, 1)
+		/*else if(wielded && Z.health < 1)
+			Z.visible_message("<span class='danger'>[Z.name] was blown to peices by the power of [src.name]!</span>", \
+				"<span class='userdanger'>You feel a powerful blow rip you apart!</span>", \
+				"<span class='danger'>You hear a heavy impact and the sound of ripping flesh!.</span>")
+			Z.gib()
+			playsound(user, 'sound/weapons/marauder.ogg', 50, 1)*/
+	if(wielded)
+		if(istype(A, /turf/simulated/wall))
+			var/turf/simulated/wall/Z = A
+			Z.ex_act(2)
+			//charged = 3
+			playsound(user, 'sound/weapons/marauder.ogg', 50, 1)
+		else if(istype(A, /obj/structure) || istype(A, /obj/mecha/))
+			var/obj/Z = A
+			Z.ex_act(2)
+			//charged = 3
+			playsound(user, 'sound/weapons/marauder.ogg', 50, 1)
+
 //spears, bay edition
 /obj/item/weapon/material/twohanded/spear
 	icon_state = "spearglass0"
