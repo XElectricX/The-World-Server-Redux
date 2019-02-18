@@ -293,6 +293,15 @@
 //	freerange = 1
 	ks2type = /obj/item/device/encryptionkey/ert
 
+//Same as ERT headset but renamed for NT
+/obj/item/device/radio/headset/nt
+	name = "nanotrasen personnel headset"
+	desc = "Radio devices used by higher ranking Nanotrasen employees."
+	icon_state = "com_headset"
+	centComm = 1
+//	freerange = 1
+	ks2type = /obj/item/device/encryptionkey/ert
+
 /obj/item/device/radio/headset/ert/alt
 	name = "emergency response team bowman headset"
 	desc = "The headset of the boss's boss."
