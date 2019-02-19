@@ -12,7 +12,7 @@ var/const/ATMOSTECH				=(1<<7)
 var/const/AI					=(1<<8)
 var/const/CYBORG				=(1<<9)
 var/const/PRESIDENT				=(1<<10)
-
+var/const/NANOTRASEN			=(1<<11)
 
 var/const/MEDSCI				=(1<<1)
 
@@ -57,6 +57,9 @@ var/list/assistant_occupations = list(
 	"Civilian"
 )
 
+var/list/nanotrasen_positions = list(
+	"Nanotrasen Employee"
+)
 
 var/list/gov_positions = list(
 	"President"
