@@ -14,10 +14,10 @@
 /decl/hierarchy/outfit/nanotrasen/representative
 	name = "Nanotrasen Representative"
 	uniform = /obj/item/clothing/under/suit_jacket/charcoal
-	belt = /obj/item/weapon/clipboard
-	l_ear = /obj/item/device/radio/headset/headset_com //Representative only needs communication with the city heads
+	belt = /obj/item/weapon/gun/projectile/pistol
+	l_ear = /obj/item/device/radio/headset/nt
 	l_hand = /obj/item/weapon/paper
-	r_pocket = /obj/item/weapon/gun/projectile/pistol
+	r_hand = /obj/item/weapon/clipboard
 	id_pda_assignment = "Nanotrasen Representative"
 
 /decl/hierarchy/outfit/nanotrasen/guard //Deployed to keep NT officials safe, like the city hall guard -- not death squad
